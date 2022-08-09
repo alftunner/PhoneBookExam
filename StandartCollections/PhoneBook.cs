@@ -6,19 +6,18 @@ public class PhoneBook
 {
     private Hashtable phoneBook = new Hashtable();
 
-    public void addContact(string name, string phone)
+    public bool addContact(string name, string phone)
     {
         if (name.Trim() == "")
         {
-            Console.WriteLine("Нужно ввести имя!");
+            return false;
         }
         else
         {
             try
             {
                 phoneBook.Add(name, phone);
-                Console.WriteLine("Контакт добавлен:");
-                Console.WriteLine($"Телефон {name}: {phone}");
+                return true;
             }
             catch (Exception e)
             {
@@ -28,17 +27,14 @@ public class PhoneBook
         }
     }
 
-    public void deleteContact(string name)
+    public bool deleteContact(string name)
     {
         if (phoneBook.ContainsKey(name))
         {
             phoneBook.Remove(name);
-            Console.WriteLine($"Контакт {name} успешно удалён из телефонного справочника!");
+            return true;
         }
-        else
-        {
-            Console.WriteLine("Контакта с таким именем нет в телефонном справочнике!");
-        }
+        return false;
     }
 
     public void renameContact(string currentName, string newName)
